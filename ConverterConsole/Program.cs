@@ -15,7 +15,8 @@ namespace ConverterConsole
             {
                 { "temp", "temperature" },
                 { "len", "length" },
-                { "m", "mass" }
+                { "m", "mass" },
+                { "spd", "speed" }
             };
 
             bool temp = true;
@@ -63,6 +64,7 @@ namespace ConverterConsole
                 " - Temperature (temp)\n" +
                 " - Length (len)\n" +
                 " - Mass (m)\n" +
+                " - Speed (spd)\n" +
                 "\n" +
                 "What measurement type do you wish to use? Type the short name.");
             type = Console.ReadLine();

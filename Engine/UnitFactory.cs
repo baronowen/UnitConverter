@@ -17,6 +17,9 @@ namespace Engine
             } else if (unitType == "mass")
             {
                 return new Mass();
+            } else if (unitType == "speed")
+            {
+                return new Speed();
             }
             else
             {
