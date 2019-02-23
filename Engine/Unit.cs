@@ -17,24 +17,13 @@ namespace Engine
             this.value = 0;
         }
 
-        public string From { get; private set; }
+        public string From { get; set; }
 
-        public string To { get; private set; }
+        public string To { get; set; }
 
-        public double Value { get; private set; }
+        public double Value { get; set; }
 
-        public void UserInput()
-        {
-            Console.WriteLine("Convert value: ");
-            Value = Double.Parse(Console.ReadLine());
-            Console.WriteLine("from: ");
-            From = Console.ReadLine();
-            Console.WriteLine("to: ");
-            To = Console.ReadLine();
-            Console.WriteLine();
-        }
-
-        public abstract void UnitInfo();
+        public abstract string UnitInfo();
 
         public abstract double Convert();
 

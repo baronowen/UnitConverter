@@ -4,9 +4,9 @@ namespace Engine
 {
     public class Temperature : Unit
     {
-        public override void UnitInfo()
+        public override string UnitInfo()
         {
-            Console.WriteLine(" - Celsius (c)\n - Fahrenheit (f)\n - Kelvin (k)\n");
+            return " - Celsius(c)\n - Fahrenheit(f)\n - Kelvin(k)\n";
         }
 
         public override double Convert()
