@@ -11,8 +11,12 @@ namespace ConverterConsole
     {
         static void Main(string[] args)
         {
-            Dictionary<string, string> measurements = new Dictionary<string, string>();
-            measurements.Add("temp", "temperature");
+            Dictionary<string, string> measurements = new Dictionary<string, string>
+            {
+                { "temp", "temperature" },
+                { "len", "length" },
+                { "m", "mass" }
+            };
 
             bool temp = true;
 
@@ -22,7 +26,7 @@ namespace ConverterConsole
                 string answer = "";
                 ConvertProcess(measurements);
 
-                Console.WriteLine("Do you want to convert something else? Yes(y) or No(n)?");
+                Console.WriteLine("Do you want to convert another unit type? Yes(y) or No(n)?");
                 answer = Console.ReadLine();
 
                 CheckAnswer(answer);
@@ -36,19 +40,19 @@ namespace ConverterConsole
 
         public static void UserInput(Unit unit)
         {
-            Console.WriteLine("Convert value: ");
-            unit.Value = Double.Parse(Console.ReadLine());
-            Console.WriteLine("from: ");
+            Console.WriteLine("Convert from: ");
             unit.From = Console.ReadLine();
             Console.WriteLine("to: ");
             unit.To = Console.ReadLine();
+            Console.WriteLine("with value of: ");
+            unit.Value = Double.Parse(Console.ReadLine());
             Console.WriteLine();
-            // TODO: add error handling in this function.
+            
         }
 
         public static void Intro()
         {
-            Console.WriteLine("A simple converter program.");
+            Console.WriteLine("A simple converter program.\n");
         }
 
         public static Unit GetMeasurementUnit(Dictionary<string, string> measurements)
@@ -57,7 +61,8 @@ namespace ConverterConsole
             UnitFactory unitFactory = new UnitFactory();
             Console.WriteLine("The measurement types that you can use:\n" +
                 " - Temperature (temp)\n" +
-                " - Length (len)(TO BE IMPLEMENTED)\n" +
+                " - Length (len)\n" +
+                " - Mass (m)\n" +
                 "\n" +
                 "What measurement type do you wish to use? Type the short name.");
             type = Console.ReadLine();
@@ -66,7 +71,6 @@ namespace ConverterConsole
                 Console.WriteLine("Wrong input! Please type your choice again.");
                 type = Console.ReadLine();
             }
-            //Console.WriteLine("\ntype: " + type + " value: " + measurements[type] + "\n");
             return unitFactory.GetUnit(measurements[type]);
         }
 
@@ -88,7 +92,7 @@ namespace ConverterConsole
                 double val = unit.Convert();
                 Console.WriteLine("Conversion resulted in: " + val + "\n");
 
-                Console.WriteLine("Do you want to convert another one? Yes(y) or No(n)?");
+                Console.WriteLine("Do you want to convert another number? Yes(y) or No(n)?");
                 reply = Console.ReadLine();
 
                 CheckAnswer(reply);

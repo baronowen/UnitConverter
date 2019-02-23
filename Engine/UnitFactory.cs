@@ -11,6 +11,12 @@ namespace Engine
             if (unitType == "temperature")
             {
                 return new Temperature();
+            } else if (unitType == "length")
+            {
+                return new Length();
+            } else if (unitType == "mass")
+            {
+                return new Mass();
             }
             else
             {
