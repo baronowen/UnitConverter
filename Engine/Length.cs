@@ -13,7 +13,10 @@ namespace Engine
             lDict = new Dictionary<string, double>
             {
                 { "km", 1000 },
+                { "hm", 100 },
+                { "dam", 10 },
                 { "m", 1 },
+                { "dm", 0.1 },
                 { "cm", 0.01 },
                 { "mm", 0.001 },
                 { "mi", 1609.344 },
@@ -26,7 +29,10 @@ namespace Engine
         public override string UnitInfo()
         {
             return " - Kilometer (km)\n" +
+                " - Hectometer (hm)\n" +
+                " - Decameter (dam)\n" +
                 " - Meter (m)\n" +
+                " - Decimeter (dm)\n" +
                 " - Centimeter (cm)\n" +
                 " - Millimeter (mm)\n" +
                 " - Mile (mi)\n" +
