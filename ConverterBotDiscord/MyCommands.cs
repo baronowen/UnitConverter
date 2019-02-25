@@ -64,9 +64,55 @@ namespace ConverterBotDiscord
                     Console.WriteLine(measurements[msg.Message.Content]);
 
                     Unit unit = unitFactory.GetUnit(measurements[msg.Message.Content]);
-
-                    // Print Info of measurement unit selected.
+                    // Print info of measurement unit selected
                     await ctx.RespondAsync($"Your choices:\n{unit.UnitInfo()}");
+
+                    //await ctx.RespondAsync($"Please give the from unit, to unit and value " +
+                    //    $"seperated by commas.");
+
+                    //msg = await interactivity.WaitForMessageAsync(xm => xm.Author.Id == ctx.User.Id,
+                    //    TimeSpan.FromMinutes(4));
+                    //if (msg != null)
+                    //{
+
+                    //}
+
+                    // ask for from.
+                    await ctx.RespondAsync($"Convert from: ");
+                    msg = await interactivity.WaitForMessageAsync(xm => xm.Author.Id ==
+                        ctx.User.Id, TimeSpan.FromMinutes(2));
+                    if (msg != null)
+                    {
+                        unit.From = msg.Message.Content;
+                        Console.WriteLine("From: " + unit.From);
+
+                        // ask for to
+                        await ctx.RespondAsync($"To: ");
+                        msg = await interactivity.WaitForMessageAsync(xm => xm.Author.Id ==
+                            ctx.User.Id, TimeSpan.FromMinutes(2));
+                        if (msg != null)
+                        {
+                            unit.To = msg.Message.Content;
+                            Console.WriteLine("To: " + unit.To);
+
+                            // ask for value
+                            await ctx.RespondAsync($"With value of: ");
+                            msg = await interactivity.WaitForMessageAsync(xm => xm.Author.Id ==
+                                ctx.User.Id, TimeSpan.FromMinutes(2));
+                            if (msg != null)
+                            {
+                                unit.Value = Double.Parse(msg.Message.Content);
+                                Console.WriteLine("value: " + unit.Value);
+
+                                // calculate
+                                double val = unit.Convert();
+                                Console.WriteLine("Conversion resulted in: " + val + "\n");
+                                await ctx.RespondAsync($"Conversion ({unit.Value + unit.From} => " +
+                                    $"{unit.To}) resulted in {val + unit.To}");
+                            }
+                        }
+                    }
+
                 }
                 else
                 {
