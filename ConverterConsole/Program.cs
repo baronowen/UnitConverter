@@ -92,7 +92,7 @@ namespace ConverterConsole
                 UserInput(unit);
 
                 double val = unit.Convert();
-                Console.WriteLine("Conversion resulted in: " + val + "\n");
+                Console.WriteLine("Conversion resulted in: " + val + unit.To + "\n");
 
                 Console.WriteLine("Do you want to convert another number? Yes(y) or No(n)?");
                 reply = Console.ReadLine();
