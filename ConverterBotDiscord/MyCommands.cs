@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Entities;
 using DSharpPlus.Interactivity;
 using Engine;
 
@@ -24,6 +26,16 @@ namespace ConverterBotDiscord
                 await ctx.RespondAsync($"I'm fine, thank you!");
         }
 
+        //[Command("greet"), Description("Says hi to specified user."), Aliases("sayhi", "say_hi")]
+        //public async Task Greet(CommandContext ctx, [Description("The user to say hi to.")] DiscordMember member)
+        //{
+        //    await ctx.TriggerTypingAsync();
+
+        //    var emoji = DiscordEmoji.FromName(ctx.Client, ":wave:");
+
+        //    await ctx.RespondAsync($"{emoji} Hello, {member.Mention}!");
+        //}
+
         [Command("random")]
         public async Task Random(CommandContext ctx, int min, int max)
         {
@@ -31,9 +43,10 @@ namespace ConverterBotDiscord
             await ctx.RespondAsync($"🎲 Your random number is: {rnd.Next(min, max)}");
         }
 
-        [Command("convert")]
+        [Command("convert"), Description("Starts the convert program"]
         public async Task StartConvert(CommandContext ctx)
         {
+            await ctx.TriggerTypingAsync();
             await ctx.RespondAsync($"Starting convert program.");
             Dictionary<string, string> measurements = new Dictionary<string, string>
             {
@@ -56,11 +69,10 @@ namespace ConverterBotDiscord
                 ctx.User.Id, TimeSpan.FromMinutes(2));
             if (msg != null)
             {
-                await ctx.RespondAsync($"Received: {msg.Message.Content}");
+                //await ctx.RespondAsync($"Received: {msg.Message.Content}");
                 if (measurements.ContainsKey(msg.Message.Content))
                 {
-                    await ctx.RespondAsync($"{measurements[msg.Message.Content]}");
-
+                    //await ctx.RespondAsync($"{measurements[msg.Message.Content]}");
                     Unit unit = unitFactory.GetUnit(measurements[msg.Message.Content]);
 
                     // Print info of measurement unit selected
@@ -96,7 +108,7 @@ namespace ConverterBotDiscord
             }
             else
             {
-                await ctx.RespondAsync($"No message received");
+                await ctx.RespondAsync($"Messsage not received in time! Program aborted!");
             }
         }
     }
