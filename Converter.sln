@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{A93C58E5-499D-4E55-AB52-7CF202CAB9CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "Engine\Engine.csproj", "{A93C58E5-499D-4E55-AB52-7CF202CAB9CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterConsole", "ConverterConsole\ConverterConsole.csproj", "{DBE65E56-6B31-4151-A0B1-1BDE9B589AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterBotDiscord", "ConverterBotDiscord\ConverterBotDiscord.csproj", "{1874DB7F-8B90-4289-9F88-F00966CC094F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DBE65E56-6B31-4151-A0B1-1BDE9B589AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBE65E56-6B31-4151-A0B1-1BDE9B589AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBE65E56-6B31-4151-A0B1-1BDE9B589AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1874DB7F-8B90-4289-9F88-F00966CC094F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1874DB7F-8B90-4289-9F88-F00966CC094F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1874DB7F-8B90-4289-9F88-F00966CC094F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1874DB7F-8B90-4289-9F88-F00966CC094F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
