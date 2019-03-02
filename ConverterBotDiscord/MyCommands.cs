@@ -43,7 +43,7 @@ namespace ConverterBotDiscord
             await ctx.RespondAsync($"🎲 Your random number is: {rnd.Next(min, max)}");
         }
 
-        [Command("convert"), Description("Starts the convert program"]
+        [Command("convert"), Description("Starts the convert program")]
         public async Task StartConvert(CommandContext ctx)
         {
             await ctx.TriggerTypingAsync();
