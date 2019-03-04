@@ -14,28 +14,25 @@ namespace ConverterBotDiscord
 {
     class Program
     {
-        //static DiscordClient discord;
-        //static CommandsNextModule commands;
-        //static InteractivityModule interactivity;
-
         public DiscordClient Client { get; set; }
         public InteractivityModule Interactivity { get; set; }
         public CommandsNextModule Commands { get; set; }
 
         static void Main(string[] args)
         {
-            //MainAsync(args).ConfigureAwait(false).GetAwaiter().GetResult();
             var prog = new Program();
             prog.RunBotAsync().GetAwaiter().GetResult();
         }
 
         public async Task RunBotAsync()
         {
+            // Loading config file
             var json = "";
             using (var fs = File.OpenRead("config.json"))
             using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
                 json = await sr.ReadToEndAsync();
 
+            // Load values from config file to client configuration
             var cfgjson = JsonConvert.DeserializeObject<ConfigJson>(json);
             var cfg = new DiscordConfiguration
             {
@@ -46,13 +43,15 @@ namespace ConverterBotDiscord
                 LogLevel = LogLevel.Debug,
                 UseInternalLogHandler = true
             };
-
+            // Instantiating client
             this.Client = new DiscordClient(cfg);
 
+            // Event hooking?
             this.Client.Ready += this.Client_Ready;
             this.Client.GuildAvailable += this.Client_GuildAvailable;
             this.Client.ClientErrored += this.Client_ClientError;
 
+            // Enabling interactivity and setting default options
             this.Client.UseInteractivity(new InteractivityConfiguration
             {
                 PaginationBehaviour = TimeoutBehaviour.Ignore,
@@ -60,21 +59,27 @@ namespace ConverterBotDiscord
                 Timeout = TimeSpan.FromMinutes(2)
             });
 
+            // Enabling commands
             var ccfg = new CommandsNextConfiguration
             {
                 StringPrefix = cfgjson.CommandPrefix,
 
             };
 
+            // hooking commands up
             this.Commands = this.Client.UseCommandsNext(ccfg);
 
+            // Hooking some command events to know what's going on
             this.Commands.CommandExecuted += this.Commands_CommandExecuted;
             this.Commands.CommandErrored += this.Commands_CommandErrored;
 
+            // Registering commands
             this.Commands.RegisterCommands<MyCommands>();
 
+            // Connect and log in
             await this.Client.ConnectAsync();
 
+            // To prevent premature quiting 9
             await Task.Delay(-1);
         }
 
