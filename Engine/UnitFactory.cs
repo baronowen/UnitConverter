@@ -20,6 +20,9 @@ namespace Engine
             } else if (unitType == "speed")
             {
                 return new Speed();
+            } else if (unitType == "surface area")
+            {
+                return new SurfaceArea();
             }
             else
             {

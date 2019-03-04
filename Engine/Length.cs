@@ -19,6 +19,7 @@ namespace Engine
                 { "dm", 0.1 },
                 { "cm", 0.01 },
                 { "mm", 0.001 },
+
                 { "mi", 1609.344 },
                 { "yd", 0.9144 },
                 { "ft", 0.3048 },
@@ -28,13 +29,13 @@ namespace Engine
 
         public override string UnitInfo()
         {
-            return " - Kilometer (km)\n" +
-                " - Hectometer (hm)\n" +
-                " - Decameter (dam)\n" +
-                " - Meter (m)\n" +
-                " - Decimeter (dm)\n" +
-                " - Centimeter (cm)\n" +
-                " - Millimeter (mm)\n" +
+            return " - Kilometre (km)\n" +
+                " - Hectometre (hm)\n" +
+                " - Decametre (dam)\n" +
+                " - Metre (m)\n" +
+                " - Decimetre (dm)\n" +
+                " - Centimetre (cm)\n" +
+                " - Millimetre (mm)\n" +
                 " - Mile (mi)\n" +
                 " - Yard (yd)\n" +
                 " - Foot (ft) \n" +
