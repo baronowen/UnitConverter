@@ -39,7 +39,7 @@ namespace ConverterConsole
                 }
             }
         }
-
+        // TODO: add validation, anything can be put in currently, which will break the engine.
         public static void UserInput(Unit unit)
         {
             Console.WriteLine("Convert from: ");
