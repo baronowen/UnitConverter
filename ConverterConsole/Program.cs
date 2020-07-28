@@ -20,10 +20,10 @@ namespace ConverterConsole
                 { "srfa", "surface area" }
             };
 
-            bool temp = true;
+            bool running = true;
 
             Intro();
-            while (temp)
+            while (running)
             {
                 string answer = "";
                 ConvertProcess(measurements);
@@ -35,7 +35,7 @@ namespace ConverterConsole
 
                 if (answer.ToLower().StartsWith("n"))
                 {
-                    temp = false;
+                    running = false;
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace ConverterConsole
             Console.WriteLine("to: ");
             unit.To = Console.ReadLine();
             Console.WriteLine("with value of: ");
-            unit.Value = Double.Parse(Console.ReadLine());
+            unit.Value = double.Parse(Console.ReadLine());
             Console.WriteLine();
             
         }
@@ -94,7 +94,8 @@ namespace ConverterConsole
                 UserInput(unit);
 
                 double val = unit.Convert();
-                Console.WriteLine("Conversion resulted in: " + val + unit.To + "\n");
+                string s = String.Format("Conversion result: {0}{1} is {2}{3}\n", unit.Value, unit.From, val, unit.To);
+                Console.WriteLine(s);
 
                 Console.WriteLine("Do you want to convert another number? Yes(y) or No(n)?");
                 reply = Console.ReadLine();
